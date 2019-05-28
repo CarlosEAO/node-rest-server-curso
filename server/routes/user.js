@@ -8,12 +8,13 @@ const User = require('../models/user');
 
 const {verificaToken, verificaAdminRole} = require('../middlewares/autenticacion')
 
+//HASTA AQUÍ SOLO IMPORTAMOS COSAS MAMALONAS
+
 app.get('/', function(req, res){
     res.json('Hello world');
 });
 
 app.get('/usuario', verificaToken ,function(req, res){
-
 
     let from = req.query.from || 0;
     let limit = req.query.limit || 5;

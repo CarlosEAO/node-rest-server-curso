@@ -45,6 +45,8 @@ let userSchema = new Schema({
     }
 });
 
+//ESTE METODO ES PARA CUANDO HACEMOS UN GET DE USUARIOS Y LO MOSTREMOS EN FORMATO JSON BORRE ALV LA PASSWORD
+
 userSchema.methods.toJSON = function(){
     let user = this;
     let userObject = user.toObject();
@@ -55,5 +57,5 @@ userSchema.methods.toJSON = function(){
 userSchema.plugin(uniqueValidator,{
     message:'Email already in use'
 });
-
+/// EN ESTA SIGUIENTE LINEA YA SE CREA EL MODELO USERS
 module.exports = mongoose.model('User', userSchema);

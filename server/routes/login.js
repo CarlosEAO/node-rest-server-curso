@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 app.post('/login',(req, res)=>{
 
     let body = req.body;
-
+    
     User.findOne({
         email:body.email
     }, (err, userDB)=>{
