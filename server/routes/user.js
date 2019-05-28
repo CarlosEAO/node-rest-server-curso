@@ -6,11 +6,14 @@ const _ = require('underscore');
 
 const User = require('../models/user');
 
+const {verificaToken, verificaAdminRole} = require('../middlewares/autenticacion')
+
 app.get('/', function(req, res){
     res.json('Hello world');
 });
 
-app.get('/usuario', function(req, res){
+app.get('/usuario', verificaToken ,function(req, res){
+
 
     let from = req.query.from || 0;
     let limit = req.query.limit || 5;
@@ -40,7 +43,7 @@ app.get('/usuario', function(req, res){
     });
 });
 
-app.post('/usuario', function(req, res){
+app.post('/usuario', [verificaToken, verificaAdminRole],function(req, res){
     let body = req.body;
 
     let user = new User({
@@ -68,7 +71,7 @@ app.post('/usuario', function(req, res){
 
 });
 
-app.put('/usuario/:id', function(req, res){
+app.put('/usuario/:id',[verificaToken, verificaAdminRole], function(req, res){
     let id = req.params.id;
 
     let body = _.pick( req.body, ['name', 'email', 'img', 'role', 'status']);
@@ -89,7 +92,7 @@ app.put('/usuario/:id', function(req, res){
     });
 });
 
-app.delete('/usuario/:id', function(req, res){
+app.delete('/usuario/:id',[verificaToken, verificaAdminRole], function(req, res){
 
     let id = req.params.id;
 

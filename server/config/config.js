@@ -14,8 +14,8 @@ if(process.env.NODE_ENV == 'dev'){
     urlDB = 'mongodb://localhost:27017/cafe';
  }
  else{
-    urlDB='mongodb+srv://Carlos_Aranda:3Pf1ndNXiltyqIjC@cluster0-w6qpu.gcp.mongodb.net/cafe?retryWrites=true';
-}
+     urlDB = process.env.MONGO_URI
+ }
 
 process.env.URLDB = urlDB;
 
@@ -24,7 +24,7 @@ process.env.EXPIRATION_TOKEN = 60*60*24*30;
 
 //SEED DE AUTENTICACIÓN
 
-process.env.SEED = process.env.SEED || 'seedDesarrollo'
+process.env.SEED = process.env.SEED || 'seedDesarrollo';
 
 
 
